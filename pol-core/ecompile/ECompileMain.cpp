@@ -9,6 +9,7 @@
 
 #include "../bscript/compiler.h"
 #include "../bscript/compilercfg.h"
+#include "../bscript/EscriptCompiler.h"
 #include "../bscript/escriptv.h"
 #include "../bscript/executor.h"
 #include "../bscript/executortype.h"
@@ -228,6 +229,11 @@ bool compile_file( const char* path )
 
     C.setQuiet( !debug );
     int res = C.compileFile( path );
+
+    EscriptCompiler compiler;
+    //compiler.setQuiet( !debug );
+    int res2 = compiler.compileFile( path );
+
 
     if ( expect_compile_failure )
     {
