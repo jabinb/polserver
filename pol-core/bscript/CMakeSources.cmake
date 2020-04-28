@@ -10,6 +10,8 @@ set (bscript_sources    # sorted !
   CMakeSources.cmake
   EscriptCompiler.cpp
   EscriptCompiler.h
+  EscriptCompilerVisitor.cpp
+  EscriptCompilerVisitor.h
   StdAfx.h
   berror.cpp 
   berror.h

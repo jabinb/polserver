@@ -11,6 +11,7 @@
 #include "../clib/fileutil.h"
 #include "../clib/logfacility.h"
 
+#include "EscriptCompilerVisitor.h"
 #include <EscriptGrammar/EscriptLexer.h>
 #include <EscriptGrammar/EscriptParser.h>
 
@@ -24,6 +25,7 @@ namespace Pol
 namespace Bscript
 {
 
+
 int EscriptCompiler::compileFile( const std::string& filename )
 {
   auto pathname = Clib::FullPath( filename.c_str() );
@@ -31,10 +33,14 @@ int EscriptCompiler::compileFile( const std::string& filename )
 
   ANTLRInputStream input( stream );
   EscriptLexer lexer( &input );
+  input.name = pathname;
   CommonTokenStream tokens( &lexer );
   EscriptGrammar::EscriptParser parser( &tokens );
 
   auto compilationUnit = parser.compilationUnit();
+
+  EscriptCompilerVisitor visitor;
+  visitor.visit(compilationUnit);
 
   INFO_PRINT << "compilation unit has " << compilationUnit->topLevelDeclaration().size()
              << " top-level declarations.\n";
