@@ -39,7 +39,8 @@ int EscriptCompiler::compileFile( const std::string& filename )
   INFO_PRINT << "compilation unit has " << compilationUnit->topLevelDeclaration().size()
              << " top-level declarations.\n";
 
-  return 0;
+  // TODO figure out how to detect and report errors
+  return (compilationUnit != NULL) ? 0 : -1;
 }
 
 }  // namespace Bscript
