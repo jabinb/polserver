@@ -8,6 +8,8 @@ set (bscript_sources    # sorted !
   ../../lib/EscriptGrammar/EscriptParserListener.cpp
   ../../lib/EscriptGrammar/EscriptParserListener.h
   CMakeSources.cmake
+  EscriptCompiler.cpp
+  EscriptCompiler.h
   StdAfx.h
   berror.cpp 
   berror.h
