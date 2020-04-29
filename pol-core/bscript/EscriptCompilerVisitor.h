@@ -258,7 +258,14 @@ class EscriptCompilerVisitor : public EscriptGrammar::EscriptParserBaseVisitor {
     return EscriptParserBaseVisitor::visitTerminal(node);
   }
   virtual antlrcpp::Any visitErrorNode(antlr4::tree::ErrorNode* node) override {
-    INFO_PRINT << "error node\n";
+    auto token = node->getSymbol();
+    auto source = token->getTokenSource();
+    INFO_PRINT << "error node (symbol: text="
+               << token->getText()
+               << " source name=" << source->getSourceName()
+               << " token line=" << token->getLine()
+               << " token index=" << token->getTokenIndex()
+               << ")\n";
     return EscriptParserBaseVisitor::visitErrorNode(node);
   }
 
