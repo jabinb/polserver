@@ -262,6 +262,85 @@ class EscriptCompilerVisitor : public EscriptGrammar::EscriptParserBaseVisitor {
     return EscriptParserBaseVisitor::visitErrorNode(node);
   }
 
+
+
+
+
+
+
+  virtual antlrcpp::Any visitIfStatement(EscriptGrammar::EscriptParser::IfStatementContext *ctx) override {
+    INFO_PRINT << "if statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitGotoStatement(EscriptGrammar::EscriptParser::GotoStatementContext *ctx) override {
+    INFO_PRINT << "goto statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitReturnStatement(EscriptGrammar::EscriptParser::ReturnStatementContext *ctx) override {
+    INFO_PRINT << "return statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitVarStatement(EscriptGrammar::EscriptParser::VarStatementContext *ctx) override {
+    INFO_PRINT << "var statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitDoStatement(EscriptGrammar::EscriptParser::DoStatementContext *ctx) override {
+    INFO_PRINT << "do statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitWhileStatement(EscriptGrammar::EscriptParser::WhileStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitExitStatement(EscriptGrammar::EscriptParser::ExitStatementContext *ctx) override {
+    INFO_PRINT << "exit statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitDeclareStatement(EscriptGrammar::EscriptParser::DeclareStatementContext *ctx) override {
+    INFO_PRINT << "declare statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitBreakStatement(EscriptGrammar::EscriptParser::BreakStatementContext *ctx) override {
+    INFO_PRINT << "break statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitContinueStatement(EscriptGrammar::EscriptParser::ContinueStatementContext *ctx) override {
+    INFO_PRINT << "continue statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitForeachStatement(EscriptGrammar::EscriptParser::ForeachStatementContext *ctx) override {
+    INFO_PRINT << "foreach statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitRepeatStatement(EscriptGrammar::EscriptParser::RepeatStatementContext *ctx) override {
+    INFO_PRINT << "repeat statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitCaseStatement(EscriptGrammar::EscriptParser::CaseStatementContext *ctx) override {
+    INFO_PRINT << "case statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitEnumStatement(EscriptGrammar::EscriptParser::EnumStatementContext *ctx) override {
+    INFO_PRINT << "enum statement\n";
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitForGroup(EscriptGrammar::EscriptParser::ForGroupContext *ctx) override {
+    INFO_PRINT << "for group statement\n";
+    return visitChildren(ctx);
+  }
 };
 
 

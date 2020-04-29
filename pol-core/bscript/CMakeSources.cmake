@@ -8,6 +8,11 @@ set (bscript_sources    # sorted !
   ../../lib/EscriptGrammar/EscriptParserListener.cpp
   ../../lib/EscriptGrammar/EscriptParserListener.h
   CMakeSources.cmake
+  CMakeSources.cmake
+  CompilationUnits.cpp
+  CompilationUnits.h
+  CompilationUnit.cpp
+  CompilationUnit.h
   EscriptCompiler.cpp
   EscriptCompiler.h
   EscriptCompilerVisitor.cpp
