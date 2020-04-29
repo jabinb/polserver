@@ -196,11 +196,6 @@ class EscriptCompilerVisitor : public EscriptGrammar::EscriptParserBaseVisitor {
     return EscriptParserBaseVisitor::visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitMethodCall(EscriptGrammar::EscriptParser::MethodCallContext *ctx) override {
-    INFO_PRINT << "method call\n";
-    return EscriptParserBaseVisitor::visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitStructInitializerExpression(EscriptGrammar::EscriptParser::StructInitializerExpressionContext *ctx) override {
     INFO_PRINT << "struct initializer expression\n";
     return EscriptParserBaseVisitor::visitChildren(ctx);
@@ -258,6 +253,7 @@ class EscriptCompilerVisitor : public EscriptGrammar::EscriptParserBaseVisitor {
                << token->getText()
                << " source name=" << source->getSourceName()
                << " token line=" << token->getLine()
+               << " token index=" << token->getTokenIndex()
                << ")\n";
     return EscriptParserBaseVisitor::visitTerminal(node);
   }

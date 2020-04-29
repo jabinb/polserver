@@ -229,15 +229,22 @@ bool compile_file( const char* path )
     Compiler C;
 
     C.setQuiet( !debug );
+
+    Tools::Timer<> timer;
+    timer.start();
     int res = C.compileFile( path );
+    timer.stop();
+    INFO_PRINT << "compileFile(1) time: " << timer.ellapsed() << "\n";
 
     if ( compilercfg.DualCompileWithAntlrGrammar )
     {
+      timer.start();
       EscriptCompiler compiler;
       int res2 = compiler.compileFile( path );
-      INFO_PRINT << "ANTLR grammar compile result: " << res2 << "\n";
+      timer.stop();
+      INFO_PRINT << "ANTLR grammar compile result: " << res2
+                 << " in " << timer.ellapsed() << " ms.\n";
     }
-
 
     if ( expect_compile_failure )
     {

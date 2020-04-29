@@ -45,6 +45,18 @@ int EscriptCompiler::compileFile( const std::string& filename )
   INFO_PRINT << "compilation unit has " << compilationUnit->topLevelDeclaration().size()
              << " top-level declarations.\n";
 
+  // 1. load source file and all included files
+  // 2. read function declarations and constants
+  // 3. process code that isn't in functions
+  // 4. process PROGRAM section
+  // 5. process referenced methods
+
+  // process:
+  //    analyze and attach attributes
+  //    optimize
+  //    generate code
+  //
+
   // TODO figure out how to detect and report errors
   return (compilationUnit != NULL) ? 0 : -1;
 }
