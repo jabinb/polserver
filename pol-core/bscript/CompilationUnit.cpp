@@ -6,6 +6,8 @@
 
 #include "../clib/logfacility.h"
 
+#include "ast/AstBuilderVisitor.h"
+#include "ast/CompilationUnitAstNode.h"
 #include "EscriptCompilerVisitor.h"
 
 namespace Pol
@@ -25,8 +27,16 @@ CompilationUnit::CompilationUnit( const std::string& pathname )
   EscriptCompilerVisitor visitor;
   visitor.visit( compilationUnit );
 
+  AstBuilderVisitor astBuilder;
+  INFO_PRINT << "Build CompilationUnit AST\n";
+  auto compilationUnitAst = astBuilder.astCompilationUnit(compilationUnit);
+
+  INFO_PRINT << "CompilationUnit AST built\n";
+  //INFO_PRINT << "ast: "  << ast;
+
   INFO_PRINT << "compilation unit has " << compilationUnit->topLevelDeclaration().size()
              << " top-level declarations.\n";
+  INFO_PRINT << compilationUnit->toStringTree(true);
 }
 
 }  // namespace Bscript

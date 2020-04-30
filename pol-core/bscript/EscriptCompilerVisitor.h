@@ -177,7 +177,11 @@ class EscriptCompilerVisitor : public EscriptGrammar::EscriptParserBaseVisitor {
   }
 
   virtual antlrcpp::Any visitExpression(EscriptGrammar::EscriptParser::ExpressionContext *ctx) override {
-    INFO_PRINT << "expression\n";
+        INFO_PRINT << "expression"
+                   << " bop=" << (ctx->bop ? ctx->bop->getText() : "null")
+                   << " expression size=" << ctx->expression().size()
+                   << " expressionList size=" << ctx->expressionList().size()
+                   << "\n";
     return EscriptParserBaseVisitor::visitChildren(ctx);
   }
 

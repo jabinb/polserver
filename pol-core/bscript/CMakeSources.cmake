@@ -9,6 +9,18 @@ set (bscript_sources    # sorted !
   ../../lib/EscriptGrammar/EscriptParserListener.h
   CMakeSources.cmake
   CMakeSources.cmake
+  ast/AstBuilderVisitor.cpp
+  ast/AstBuilderVisitor.h
+  ast/CompilationUnitAstNode.cpp
+  ast/CompilationUnitAstNode.h
+  ast/AstNode.cpp
+  ast/AstNode.h
+  ast/MethodCallAstNode.cpp
+  ast/MethodCallAstNode.h
+  ast/StringLiteralAstNode.cpp
+  ast/StringLiteralAstNode.h
+  ast/TopLevelDeclarationAstNode.cpp
+  ast/TopLevelDeclarationAstNode.h
   CompilationUnits.cpp
   CompilationUnits.h
   CompilationUnit.cpp
