@@ -4,6 +4,9 @@
 
 #include "StringLiteralAstNode.h"
 
+#include <iomanip>
+#include "../../clib/strutil.h"
+
 namespace Pol
 {
 namespace Bscript
@@ -12,6 +15,12 @@ namespace Bscript
 StringLiteralAstNode::StringLiteralAstNode(const std::string& value) : AstNode({}), value(value)
 {
 
+}
+
+std::string StringLiteralAstNode::describe() const
+{
+  // why doesn't <iomanip> provide std::quoted?
+  return "String literal: " + Clib::getencodedquotedstring(value);
 }
 
 }

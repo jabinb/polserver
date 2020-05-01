@@ -12,10 +12,13 @@ namespace Pol
 namespace Bscript
 {
 
-class CompilationUnitAstNode : AstNode
+class CompilationUnitAstNode : public AstNode
 {
 public:
   CompilationUnitAstNode(std::vector<std::shared_ptr<AstNode>> children);
+
+  virtual std::string describe() const { return "CompilationUnit"; }
+
 };
 
 }  // namespace Bscript

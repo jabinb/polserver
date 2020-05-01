@@ -2,7 +2,9 @@
 // Created by Eric Swanson on 4/29/20.
 //
 
-#include "AstBuilderVisitor.h"
+#include "AstBuilder.h"
+
+#include <EscriptGrammar/EscriptParser.h>
 
 #include "../clib/logfacility.h"
 
@@ -20,9 +22,7 @@ namespace Pol
 namespace Bscript
 {
 
-// I am certain that I am doing this all wrong.
-
-antlrcpp::Any AstBuilderVisitor::visitCompilationUnit(
+CompilationUnitAstNode* AstBuilder::compilationUnitToAst(
     EscriptParser::CompilationUnitContext* ctx )
 {
   INFO_PRINT << "visitCompilationUnit In\n";
@@ -30,7 +30,7 @@ antlrcpp::Any AstBuilderVisitor::visitCompilationUnit(
 
   for ( auto itr : ctx->topLevelDeclaration() )
   {
-    auto ast_node = visitTopLevelDeclaration( itr ).as<AstNode*>();
+    auto ast_node = topLevelDeclarationToAst( itr );
     top_level_declarations.push_back( std::shared_ptr<AstNode>( ast_node ) );
   }
 
@@ -38,30 +38,30 @@ antlrcpp::Any AstBuilderVisitor::visitCompilationUnit(
   return new CompilationUnitAstNode( top_level_declarations );
 }
 
-antlrcpp::Any AstBuilderVisitor::visitTopLevelDeclaration(
+AstNode* AstBuilder::topLevelDeclarationToAst(
     EscriptParser::TopLevelDeclarationContext* ctx )
 {
   INFO_PRINT << "astTopLevelDeclaration\n";
 
   if (ctx->statement() != nullptr)
-    return visitStatement(ctx->statement());
+    return statementToAst(ctx->statement());
 
   INFO_PRINT << "literal unhandled" << ctx->toStringTree( true );
   throw std::runtime_error( "literal unhandled" );
 }
 
-antlrcpp::Any AstBuilderVisitor::visitStatement(
+AstNode* AstBuilder::statementToAst(
     EscriptParser::StatementContext* ctx )
 {
   INFO_PRINT << "astStatement\n";
 
   if (ctx->expression() != nullptr)
-    return visitExpression(ctx->expression());
+    return expressionToAst(ctx->expression());
   INFO_PRINT << "expression unhandled" << ctx->toStringTree( true );
   throw std::runtime_error( "expression unhandled" );
 }
 
-antlrcpp::Any AstBuilderVisitor::visitMethodCall( EscriptParser::MethodCallContext* ctx )
+MethodCallAstNode* AstBuilder::methodCallToAst( EscriptParser::MethodCallContext* ctx )
 {
   INFO_PRINT << "visitMethodCall In\n";
   auto method_name = ctx->IDENTIFIER()->getSymbol()->getText();
@@ -73,12 +73,7 @@ antlrcpp::Any AstBuilderVisitor::visitMethodCall( EscriptParser::MethodCallConte
   for ( auto expressionContext : expressionList->expression() )
   {
     INFO_PRINT << "visitMethodCall visitExpression\n";
-    auto expr = visitExpression( expressionContext );
-    if (expr.is<antlr4::ParserRuleContext>())
-      INFO_PRINT << "is parser rule context";
-    INFO_PRINT <<"    convert to AstNode*\n";
-    AstNode* ast_node = expr.as<AstNode*>();
-    INFO_PRINT <<"    converted to AstNode*\n";
+    AstNode* ast_node = expressionToAst( expressionContext );
     // INFO_PRINT << "visitMethodCall cast visited expression to AstNode*\n";
     // auto ast_node = visited.as<AstNode*>();
     INFO_PRINT << "visitMethodCall push back\n";
@@ -90,14 +85,14 @@ antlrcpp::Any AstBuilderVisitor::visitMethodCall( EscriptParser::MethodCallConte
 }
 
 // I couldn' get these to work as antlrcpp::Any
-antlrcpp::Any AstBuilderVisitor::visitExpression( EscriptParser::ExpressionContext* ctx )
+AstNode* AstBuilder::expressionToAst( EscriptParser::ExpressionContext* ctx )
 {
   INFO_PRINT << "visitExpression" << ctx->toStringTree( true ) << "\n";
 
   if ( ctx->primary() != nullptr )
-    return visitPrimary( ctx->primary() );
+    return primaryToAst( ctx->primary() );
   if ( ctx->methodCall() != nullptr )
-    return visitMethodCall( ctx->methodCall() );
+    return methodCallToAst( ctx->methodCall() );
 
   INFO_PRINT << "unhandled" << ctx->toStringTree( true ) << "\n";
   throw std::runtime_error( "unhandled expression" );
@@ -105,16 +100,17 @@ antlrcpp::Any AstBuilderVisitor::visitExpression( EscriptParser::ExpressionConte
   // re//turn new ExpressionAstNode(children);
 }
 
-antlrcpp::Any AstBuilderVisitor::visitPrimary( EscriptParser::PrimaryContext* ctx )
+AstNode* AstBuilder::primaryToAst( EscriptParser::PrimaryContext* ctx )
 {
   if ( ctx->literal() != nullptr )
-    return visitLiteral( ctx->literal() );
+    return literalToAst( ctx->literal() );
 
   INFO_PRINT << "unhandled literal" << ctx->toStringTree( true ) << "\n";
   throw std::runtime_error( "unhandled literal" );
 }
 
-antlrcpp::Any AstBuilderVisitor::visitLiteral( EscriptParser::LiteralContext* ctx )
+
+AstNode* AstBuilder::literalToAst( EscriptParser::LiteralContext* ctx )
 {
   if ( ctx->STRING_LITERAL() != nullptr )
     return new StringLiteralAstNode( ctx->STRING_LITERAL()->getSymbol()->getText() );

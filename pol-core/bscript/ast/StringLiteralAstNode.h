@@ -17,6 +17,8 @@ class StringLiteralAstNode : public AstNode
 public:
   StringLiteralAstNode(const std::string& value);
 
+  virtual std::string describe() const override;
+
 private:
   std::string value;
 };

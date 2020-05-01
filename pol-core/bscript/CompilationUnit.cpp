@@ -6,6 +6,7 @@
 
 #include "../clib/logfacility.h"
 
+#include "ast/AstBuilder.h"
 #include "ast/AstBuilderVisitor.h"
 #include "ast/CompilationUnitAstNode.h"
 #include "EscriptCompilerVisitor.h"
@@ -27,11 +28,18 @@ CompilationUnit::CompilationUnit( const std::string& pathname )
   EscriptCompilerVisitor visitor;
   visitor.visit( compilationUnit );
 
-  AstBuilderVisitor astBuilder;
+  AstBuilder astBuilder;
   INFO_PRINT << "Build CompilationUnit AST\n";
-  auto compilationUnitAst = astBuilder.astCompilationUnit(compilationUnit);
-
+  auto compilationUnitAst = astBuilder.compilationUnitToAst(compilationUnit);
   INFO_PRINT << "CompilationUnit AST built\n";
+
+  INFO_PRINT << compilationUnitAst->toStringTree();
+
+  AstBuilderVisitor astBuilderVisitor;
+  INFO_PRINT << "Build CompilationUnit AST (with Visitor)\n";
+  auto compilationUnitAstFromVisitor = astBuilderVisitor.visitCompilationUnit(compilationUnit);
+  INFO_PRINT << "CompilationUnit AST built (with visitor)\n";
+
   //INFO_PRINT << "ast: "  << ast;
 
   INFO_PRINT << "compilation unit has " << compilationUnit->topLevelDeclaration().size()

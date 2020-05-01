@@ -16,6 +16,8 @@ class StatementAstNode : public AstNode
 {
 public:
   StatementAstNode(const std::vector<std::shared_ptr<AstNode>> children);
+
+  virtual std::string describe() const override;
 };
 
 }

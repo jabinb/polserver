@@ -22,19 +22,19 @@ class TopLevelDeclarationAstNode;
 class AstBuilderVisitor : public EscriptGrammar::EscriptParserBaseVisitor
 {
 public:
-  CompilationUnitAstNode* astCompilationUnit(EscriptGrammar::EscriptParser::CompilationUnitContext *ctx);
+  antlrcpp::Any visitCompilationUnit(EscriptGrammar::EscriptParser::CompilationUnitContext *ctx);
 
-  TopLevelDeclarationAstNode* astTopLevelDeclaration(EscriptGrammar::EscriptParser::TopLevelDeclarationContext *ctx);
+  antlrcpp::Any visitTopLevelDeclaration(EscriptGrammar::EscriptParser::TopLevelDeclarationContext *ctx);
 
-  AstNode* astStatement(EscriptGrammar::EscriptParser::StatementContext *ctx);
+  antlrcpp::Any visitStatement(EscriptGrammar::EscriptParser::StatementContext *ctx);
 
-  MethodCallAstNode* astMethodCall(EscriptGrammar::EscriptParser::MethodCallContext *ctx);
+  antlrcpp::Any visitMethodCall(EscriptGrammar::EscriptParser::MethodCallContext *ctx);
 
-  AstNode* astExpression(EscriptGrammar::EscriptParser::ExpressionContext *ctx);
+  antlrcpp::Any visitExpression(EscriptGrammar::EscriptParser::ExpressionContext *ctx);
 
-  AstNode* astLiteral(EscriptGrammar::EscriptParser::LiteralContext *ctx);
+  antlrcpp::Any visitLiteral(EscriptGrammar::EscriptParser::LiteralContext *ctx);
 
-  AstNode* astPrimary(EscriptGrammar::EscriptParser::PrimaryContext *ctx);
+  antlrcpp::Any visitPrimary(EscriptGrammar::EscriptParser::PrimaryContext *ctx);
 
 };
 
