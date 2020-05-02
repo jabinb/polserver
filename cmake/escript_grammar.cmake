@@ -9,11 +9,11 @@ if(Java_JAVA_EXECUTABLE AND ANTLR_EXECUTABLE)
   message("adding target 'escriptgrammar'")
   add_custom_target(escriptgrammar
     COMMAND ${Java_JAVA_EXECUTABLE} -jar ${ANTLR_EXECUTABLE}
-      -Dlanguage=Cpp -visitor
+      -Dlanguage=Cpp -visitor -package EscriptGrammar
       ${CMAKE_CURRENT_LIST_DIR}/../lib/EScriptGrammar/EscriptParser.g4
       -o ${CMAKE_CURRENT_LIST_DIR}/../lib/EScriptGrammar
     COMMAND ${Java_JAVA_EXECUTABLE} -jar ${ANTLR_EXECUTABLE}
-      -Dlanguage=Cpp
+      -Dlanguage=Cpp -package EscriptGrammar
       ${CMAKE_CURRENT_LIST_DIR}/../lib/EScriptGrammar/EscriptLexer.g4
       -o ${CMAKE_CURRENT_LIST_DIR}/../lib/EScriptGrammar
     COMMENT "Generating grammar files"
