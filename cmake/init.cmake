@@ -206,6 +206,7 @@ macro(cmake_fake_target)
       cmake/Boost.cmake
       cmake/Curl.cmake
       cmake/escript_grammar.cmake
+      cmake/ExternalAntlr4Cpp.cmake
       cmake/Format.cmake
       cmake/Kaitai.cmake
       cmake/StackWalker.cmake
@@ -225,6 +226,7 @@ macro(cmake_fake_target)
     cmake/Boost.cmake
     cmake/Curl.cmake
     cmake/escript_grammar.cmake
+    cmake/ExternalAntlr4Cpp.cmake
     cmake/Format.cmake
     cmake/Kaitai.cmake
     cmake/StackWalker.cmake
