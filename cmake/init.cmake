@@ -225,12 +225,8 @@ macro(cmake_fake_target)
     cmake/Benchmark.cmake
     cmake/Boost.cmake
     cmake/Curl.cmake
-<<<<<<< HEAD
     cmake/escript_grammar.cmake
-=======
-    cmake/EscriptGrammar.cmake
     cmake/ExternalAntlr4Cpp.cmake
->>>>>>> 819504c4d... use ExternalAntlr4Cpp
     cmake/Format.cmake
     cmake/Kaitai.cmake
     cmake/StackWalker.cmake
