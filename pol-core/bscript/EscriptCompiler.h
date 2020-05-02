@@ -5,6 +5,9 @@
 #ifndef POLSERVER_ESCRIPTCOMPILER_H
 #define POLSERVER_ESCRIPTCOMPILER_H
 
+#include <string>
+#include <vector>
+
 namespace Pol
 {
 namespace Bscript

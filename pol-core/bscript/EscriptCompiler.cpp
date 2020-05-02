@@ -11,11 +11,13 @@
 #include "../clib/fileutil.h"
 #include "../clib/logfacility.h"
 
-#include "EscriptLexer.h"
-#include "EscriptParser.h"
+#include <EscriptGrammar/EscriptLexer.h>
+#include <EscriptGrammar/EscriptParser.h>
 
 using antlr4::ANTLRInputStream;
 using antlr4::CommonTokenStream;
+using EscriptGrammar::EscriptLexer;
+using EscriptGrammar::EscriptParser;
 
 namespace Pol
 {
@@ -27,7 +29,7 @@ int EscriptCompiler::compileFile( const std::string& filename )
   auto pathname = Clib::FullPath( filename.c_str() );
   std::ifstream stream( pathname );
 
-  antlr4::ANTLRInputStream input( stream );
+  ANTLRInputStream input( stream );
   EscriptLexer lexer( &input );
   CommonTokenStream tokens( &lexer );
   EscriptParser parser( &tokens );
