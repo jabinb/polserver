@@ -32,7 +32,7 @@ int EscriptCompiler::compileFile( const std::string& filename )
   ANTLRInputStream input( stream );
   EscriptLexer lexer( &input );
   CommonTokenStream tokens( &lexer );
-  EscriptParser parser( &tokens );
+  EscriptGrammar::EscriptParser parser( &tokens );
 
   auto compilationUnit = parser.compilationUnit();
 
