@@ -16,7 +16,7 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/c_flag_over
 set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX ${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_flag_overrides.cmake)
 
 # otherwise it tries to download latest from github
-set(ANTLR4_ZIP_REPOSITORY https://github.com/antlr/antlr4/archive/4.8.zip)
+#set(ANTLR4_ZIP_REPOSITORY https://github.com/antlr/antlr4/archive/4.8.zip)
 
 project(polserver CXX C)
 
@@ -121,10 +121,11 @@ endif()
 prepare_build()
 cmake_fake_target()
 
+include(cmake/Antlr.cmake)
 include(cmake/Boost.cmake)
 include(cmake/Benchmark.cmake)
 include(cmake/escript_grammar.cmake)
-include(cmake/ExternalAntlr4Cpp.cmake)
+#include(cmake/ExternalAntlr4Cpp.cmake)
 include(cmake/Format.cmake)
 include(cmake/Kaitai.cmake)
 if (${windows})

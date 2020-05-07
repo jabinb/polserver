@@ -9,11 +9,15 @@ add_library(${lib_name} STATIC
 set_compile_flags(${lib_name} 0)
 warning_suppression(${lib_name})
 enable_pch(${lib_name})
-include_directories(${ANTLR4_INCLUDE_DIRS})
+include_directories("${CMAKE_CURRENT_LIST_DIR}/../../lib/antlr/runtime/Cpp/runtime/src")
+
+#target_include_directories(${lib_name}  PRIVATE
+#        "${CMAKE_CURRENT_LIST_DIR}/../../lib/antlr/runtime/Cpp/runtime/src"
+#        )
 
 target_link_libraries(${lib_name} PUBLIC
+  antlr
   clib
-  antlr4_static
 )
 if (${linux})
   target_link_libraries(${lib_name} PUBLIC
