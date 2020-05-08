@@ -3,7 +3,7 @@ set(lib_name antlr)
 
 set (ANTLR_SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/../lib/antlr4-4.8")
 if(NOT EXISTS "${ANTLR_SOURCE_DIR}/antlr")
-    ExternalProject_Add(antlr
+    ExternalProject_Add(antlr48
 #            URL "https://github.com/antlr/antlr4/archive/4.8.zip"
             URL "${ANTLR_SOURCE_DIR}/../antlr4-4.8.tar.gz"
             SOURCE_DIR "${ANTLR_SOURCE_DIR}"
@@ -13,14 +13,12 @@ if(NOT EXISTS "${ANTLR_SOURCE_DIR}/antlr")
             LOG_DOWNLOAD 1
             BUILD_IN_SOURCE 1
             )
-    set_target_properties (antlr PROPERTIES FOLDER 3rdParty)
+    set_target_properties (antlr48 PROPERTIES FOLDER 3rdParty)
 else()
     message("Antlr already extracted")
 endif()
 
 #set (ANTLR4_LIBRARY_DIR "${ANTLR4_SOURCE_DIR}/lib/lib")
-
-
 
 add_library(${lib_name} STATIC
         # sorted !
