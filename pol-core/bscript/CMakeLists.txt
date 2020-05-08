@@ -15,6 +15,12 @@ include_directories("${CMAKE_CURRENT_LIST_DIR}/../../lib/antlr/runtime/Cpp/runti
 #        "${CMAKE_CURRENT_LIST_DIR}/../../lib/antlr/runtime/Cpp/runtime/src"
 #        )
 
+#clib is our base lib, if this waits for boost extraction
+#its enough, the external libs can start to build already
+if(NOT EXISTS "${ANTLR_SOURCE_DIR}/antlr")
+  add_dependencies(${lib_name} antlr)
+endif()
+
 target_link_libraries(${lib_name} PUBLIC
   antlr
   clib
