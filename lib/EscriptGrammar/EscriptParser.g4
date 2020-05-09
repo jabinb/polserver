@@ -101,7 +101,7 @@ returnStatement
     ;
 
 constStatement
-    : CONST variableDeclaration ';' 
+    : KEYWORD_CONST variableDeclaration ';'
     ;
 
 varStatement
@@ -137,7 +137,7 @@ forStatement
     ;
 
 foreachStatement
-    : FOREACH IDENTIFIER IN expression block ENDFOREACH
+    : FOREACH IDENTIFIER KEYWORD_IN expression block ENDFOREACH
     ;
 
 repeatStatement
@@ -247,7 +247,7 @@ expression
     | ARRAY arrayInitializer?
     | STRUCT structInitializer?
     | DICTIONARY dictInitializer?
-    | ERROR structInitializer?
+    | KEYWORD_ERROR structInitializer?
     | '{' expressionList* '}'
     | '@' IDENTIFIER
     | expression postfix=('++' | '--')

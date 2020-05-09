@@ -112,7 +112,7 @@ EscriptParser::CompilationUnitContext* EscriptParser::compilationUnit() {
     if ((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & ((1ULL << EscriptParser::BANG_A)
       | (1ULL << EscriptParser::BANG_B)
-      | (1ULL << EscriptParser::ERROR)
+      | (1ULL << EscriptParser::KEYWORD_ERROR)
       | (1ULL << EscriptParser::DICTIONARY))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
       ((1ULL << (_la - 64)) & ((1ULL << (EscriptParser::STRUCT - 64))
       | (1ULL << (EscriptParser::ARRAY - 64))
@@ -206,7 +206,7 @@ EscriptParser::ModuleUnitContext* EscriptParser::moduleUnit() {
     setState(138);
     _errHandler->sync(this);
     _la = _input->LA(1);
-    while (_la == EscriptParser::CONST || _la == EscriptParser::IDENTIFIER) {
+    while (_la == EscriptParser::KEYWORD_CONST || _la == EscriptParser::IDENTIFIER) {
       setState(135);
       moduleDeclarationStatement();
       setState(140);
@@ -283,7 +283,7 @@ EscriptParser::ModuleDeclarationStatementContext* EscriptParser::moduleDeclarati
         break;
       }
 
-      case EscriptParser::CONST: {
+      case EscriptParser::KEYWORD_CONST: {
         enterOuterAlt(_localctx, 2);
         setState(144);
         constStatement();
@@ -556,7 +556,7 @@ EscriptParser::TopLevelDeclarationContext* EscriptParser::topLevelDeclaration() 
       case EscriptParser::IF:
       case EscriptParser::GOTO:
       case EscriptParser::RETURN:
-      case EscriptParser::CONST:
+      case EscriptParser::KEYWORD_CONST:
       case EscriptParser::VAR:
       case EscriptParser::DO:
       case EscriptParser::WHILE:
@@ -571,7 +571,7 @@ EscriptParser::TopLevelDeclarationContext* EscriptParser::topLevelDeclaration() 
       case EscriptParser::ENUM:
       case EscriptParser::BANG_A:
       case EscriptParser::BANG_B:
-      case EscriptParser::ERROR:
+      case EscriptParser::KEYWORD_ERROR:
       case EscriptParser::DICTIONARY:
       case EscriptParser::STRUCT:
       case EscriptParser::ARRAY:
@@ -1538,7 +1538,7 @@ EscriptParser::ReturnStatementContext* EscriptParser::returnStatement() {
     if ((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & ((1ULL << EscriptParser::BANG_A)
       | (1ULL << EscriptParser::BANG_B)
-      | (1ULL << EscriptParser::ERROR)
+      | (1ULL << EscriptParser::KEYWORD_ERROR)
       | (1ULL << EscriptParser::DICTIONARY))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
       ((1ULL << (_la - 64)) & ((1ULL << (EscriptParser::STRUCT - 64))
       | (1ULL << (EscriptParser::ARRAY - 64))
@@ -1582,8 +1582,8 @@ EscriptParser::ConstStatementContext::ConstStatementContext(ParserRuleContext *p
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* EscriptParser::ConstStatementContext::CONST() {
-  return getToken(EscriptParser::CONST, 0);
+tree::TerminalNode* EscriptParser::ConstStatementContext::KEYWORD_CONST() {
+  return getToken(EscriptParser::KEYWORD_CONST, 0);
 }
 
 EscriptParser::VariableDeclarationContext* EscriptParser::ConstStatementContext::variableDeclaration() {
@@ -1629,7 +1629,7 @@ EscriptParser::ConstStatementContext* EscriptParser::constStatement() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(247);
-    match(EscriptParser::CONST);
+    match(EscriptParser::KEYWORD_CONST);
     setState(248);
     variableDeclaration();
     setState(249);
@@ -2243,8 +2243,8 @@ tree::TerminalNode* EscriptParser::ForeachStatementContext::IDENTIFIER() {
   return getToken(EscriptParser::IDENTIFIER, 0);
 }
 
-tree::TerminalNode* EscriptParser::ForeachStatementContext::IN() {
-  return getToken(EscriptParser::IN, 0);
+tree::TerminalNode* EscriptParser::ForeachStatementContext::KEYWORD_IN() {
+  return getToken(EscriptParser::KEYWORD_IN, 0);
 }
 
 EscriptParser::ExpressionContext* EscriptParser::ForeachStatementContext::expression() {
@@ -2298,7 +2298,7 @@ EscriptParser::ForeachStatementContext* EscriptParser::foreachStatement() {
     setState(291);
     match(EscriptParser::IDENTIFIER);
     setState(292);
-    match(EscriptParser::IN);
+    match(EscriptParser::KEYWORD_IN);
     setState(293);
     expression(0);
     setState(294);
@@ -4280,8 +4280,8 @@ EscriptParser::DictInitializerContext* EscriptParser::ExpressionContext::dictIni
   return getRuleContext<EscriptParser::DictInitializerContext>(0);
 }
 
-tree::TerminalNode* EscriptParser::ExpressionContext::ERROR() {
-  return getToken(EscriptParser::ERROR, 0);
+tree::TerminalNode* EscriptParser::ExpressionContext::KEYWORD_ERROR() {
+  return getToken(EscriptParser::KEYWORD_ERROR, 0);
 }
 
 tree::TerminalNode* EscriptParser::ExpressionContext::LBRACE() {
@@ -4404,8 +4404,8 @@ tree::TerminalNode* EscriptParser::ExpressionContext::BITOR() {
   return getToken(EscriptParser::BITOR, 0);
 }
 
-tree::TerminalNode* EscriptParser::ExpressionContext::IN() {
-  return getToken(EscriptParser::IN, 0);
+tree::TerminalNode* EscriptParser::ExpressionContext::KEYWORD_IN() {
+  return getToken(EscriptParser::KEYWORD_IN, 0);
 }
 
 tree::TerminalNode* EscriptParser::ExpressionContext::AND_A() {
@@ -4597,7 +4597,7 @@ EscriptParser::ExpressionContext* EscriptParser::expression(int precedence) {
 
     case 7: {
       setState(477);
-      match(EscriptParser::ERROR);
+      match(EscriptParser::KEYWORD_ERROR);
       setState(479);
       _errHandler->sync(this);
 
@@ -4621,7 +4621,7 @@ EscriptParser::ExpressionContext* EscriptParser::expression(int precedence) {
       while ((((_la & ~ 0x3fULL) == 0) &&
         ((1ULL << _la) & ((1ULL << EscriptParser::BANG_A)
         | (1ULL << EscriptParser::BANG_B)
-        | (1ULL << EscriptParser::ERROR)
+        | (1ULL << EscriptParser::KEYWORD_ERROR)
         | (1ULL << EscriptParser::DICTIONARY))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
         ((1ULL << (_la - 64)) & ((1ULL << (EscriptParser::STRUCT - 64))
         | (1ULL << (EscriptParser::ARRAY - 64))
@@ -4878,7 +4878,7 @@ EscriptParser::ExpressionContext* EscriptParser::expression(int precedence) {
 
           if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
           setState(522);
-          dynamic_cast<ExpressionContext *>(_localctx)->bop = match(EscriptParser::IN);
+          dynamic_cast<ExpressionContext *>(_localctx)->bop = match(EscriptParser::KEYWORD_IN);
           setState(523);
           expression(5);
           break;
@@ -5372,7 +5372,7 @@ EscriptParser::MethodCallContext* EscriptParser::methodCall() {
     if ((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & ((1ULL << EscriptParser::BANG_A)
       | (1ULL << EscriptParser::BANG_B)
-      | (1ULL << EscriptParser::ERROR)
+      | (1ULL << EscriptParser::KEYWORD_ERROR)
       | (1ULL << EscriptParser::DICTIONARY))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
       ((1ULL << (_la - 64)) & ((1ULL << (EscriptParser::STRUCT - 64))
       | (1ULL << (EscriptParser::ARRAY - 64))
@@ -5906,7 +5906,7 @@ EscriptParser::DictInitializerContext* EscriptParser::dictInitializer() {
     while ((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & ((1ULL << EscriptParser::BANG_A)
       | (1ULL << EscriptParser::BANG_B)
-      | (1ULL << EscriptParser::ERROR)
+      | (1ULL << EscriptParser::KEYWORD_ERROR)
       | (1ULL << EscriptParser::DICTIONARY))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
       ((1ULL << (_la - 64)) & ((1ULL << (EscriptParser::STRUCT - 64))
       | (1ULL << (EscriptParser::ARRAY - 64))
@@ -6024,7 +6024,7 @@ EscriptParser::ArrayInitializerContext* EscriptParser::arrayInitializer() {
         while ((((_la & ~ 0x3fULL) == 0) &&
           ((1ULL << _la) & ((1ULL << EscriptParser::BANG_A)
           | (1ULL << EscriptParser::BANG_B)
-          | (1ULL << EscriptParser::ERROR)
+          | (1ULL << EscriptParser::KEYWORD_ERROR)
           | (1ULL << EscriptParser::DICTIONARY))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
           ((1ULL << (_la - 64)) & ((1ULL << (EscriptParser::STRUCT - 64))
           | (1ULL << (EscriptParser::ARRAY - 64))
@@ -6067,7 +6067,7 @@ EscriptParser::ArrayInitializerContext* EscriptParser::arrayInitializer() {
         while ((((_la & ~ 0x3fULL) == 0) &&
           ((1ULL << _la) & ((1ULL << EscriptParser::BANG_A)
           | (1ULL << EscriptParser::BANG_B)
-          | (1ULL << EscriptParser::ERROR)
+          | (1ULL << EscriptParser::KEYWORD_ERROR)
           | (1ULL << EscriptParser::DICTIONARY))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
           ((1ULL << (_la - 64)) & ((1ULL << (EscriptParser::STRUCT - 64))
           | (1ULL << (EscriptParser::ARRAY - 64))
@@ -6460,23 +6460,24 @@ std::vector<std::string> EscriptParser::_literalNames = {
 };
 
 std::vector<std::string> EscriptParser::_symbolicNames = {
-  "", "IF", "THEN", "ELSEIF", "ENDIF", "ELSE", "GOTO", "RETURN", "CONST", 
+  "", "IF", "THEN", "ELSEIF", "ENDIF", "ELSE", "GOTO", "RETURN", "KEYWORD_CONST", 
   "VAR", "DO", "DOWHILE", "WHILE", "ENDWHILE", "EXIT", "DECLARE", "FUNCTION", 
   "ENDFUNCTION", "EXPORTED", "USE", "INCLUDE", "BREAK", "CONTINUE", "FOR", 
   "ENDFOR", "TO", "FOREACH", "ENDFOREACH", "REPEAT", "UNTIL", "PROGRAM", 
   "ENDPROGRAM", "CASE", "DEFAULT", "ENDCASE", "ENUM", "ENDENUM", "DOWNTO", 
-  "STEP", "REFERENCE", "OUT", "INPUT", "BYVAL", "STRING", "LONG", "INTEGER", 
-  "UNSIGNED", "SIGNED", "REAL", "FLOAT", "DOUBLE", "AS", "IS", "AND_A", 
-  "AND_B", "OR_A", "OR_B", "BANG_A", "BANG_B", "BYREF", "UNUSED", "ERROR", 
-  "HASH", "DICTIONARY", "STRUCT", "ARRAY", "STACK", "IN", "DECIMAL_LITERAL", 
-  "HEX_LITERAL", "OCT_LITERAL", "BINARY_LITERAL", "FLOAT_LITERAL", "HEX_FLOAT_LITERAL", 
-  "CHAR_LITERAL", "STRING_LITERAL", "NULL_LITERAL", "LPAREN", "RPAREN", 
-  "LBRACK", "RBRACK", "LBRACE", "RBRACE", "DOT", "ARROW", "MUL", "DIV", 
-  "MOD", "ADD", "SUB", "ADD_ASSIGN", "SUB_ASSIGN", "MUL_ASSIGN", "DIV_ASSIGN", 
-  "MOD_ASSIGN", "LE", "LT", "GE", "GT", "RSHIFT", "LSHIFT", "BITAND", "CARET", 
-  "BITOR", "NOTEQUAL_A", "NOTEQUAL_B", "EQUAL", "ASSIGN", "ADDMEMBER", "DELMEMBER", 
-  "CHKMEMBER", "SEMI", "COMMA", "TILDE", "AT", "COLONCOLON", "COLON", "INC", 
-  "DEC", "WS", "COMMENT", "LINE_COMMENT", "IDENTIFIER"
+  "STEP", "REFERENCE", "KEYWORD_OUT", "INOUT", "BYVAL", "STRING", "KEYWORD_LONG", 
+  "INTEGER", "UNSIGNED", "SIGNED", "REAL", "FLOAT", "DOUBLE", "AS", "IS", 
+  "AND_A", "AND_B", "OR_A", "OR_B", "BANG_A", "BANG_B", "BYREF", "UNUSED", 
+  "KEYWORD_ERROR", "HASH", "DICTIONARY", "STRUCT", "ARRAY", "STACK", "KEYWORD_IN", 
+  "DECIMAL_LITERAL", "HEX_LITERAL", "OCT_LITERAL", "BINARY_LITERAL", "FLOAT_LITERAL", 
+  "HEX_FLOAT_LITERAL", "CHAR_LITERAL", "STRING_LITERAL", "NULL_LITERAL", 
+  "LPAREN", "RPAREN", "LBRACK", "RBRACK", "LBRACE", "RBRACE", "DOT", "ARROW", 
+  "MUL", "DIV", "MOD", "ADD", "SUB", "ADD_ASSIGN", "SUB_ASSIGN", "MUL_ASSIGN", 
+  "DIV_ASSIGN", "MOD_ASSIGN", "LE", "LT", "GE", "GT", "RSHIFT", "LSHIFT", 
+  "BITAND", "CARET", "BITOR", "NOTEQUAL_A", "NOTEQUAL_B", "EQUAL", "ASSIGN", 
+  "ADDMEMBER", "DELMEMBER", "CHKMEMBER", "SEMI", "COMMA", "TILDE", "AT", 
+  "COLONCOLON", "COLON", "INC", "DEC", "WS", "COMMENT", "LINE_COMMENT", 
+  "IDENTIFIER"
 };
 
 dfa::Vocabulary EscriptParser::_vocabulary(_literalNames, _symbolicNames);
