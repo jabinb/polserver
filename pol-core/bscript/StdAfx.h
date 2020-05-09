@@ -51,7 +51,6 @@
 #include "../clib/rawtypes.h"
 #include "../clib/refptr.h"
 #include "../clib/spinlock.h"
-#include "../clib/stlutil.h"
 #include "../clib/strutil.h"
 #include "../clib/weakptr.h"
 
