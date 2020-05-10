@@ -121,6 +121,7 @@ cmake_fake_target()
 
 include(cmake/Boost.cmake)
 include(cmake/Benchmark.cmake)
+include(cmake/escript_grammar.cmake)
 include(cmake/Format.cmake)
 include(cmake/Kaitai.cmake)
 if (${windows})
