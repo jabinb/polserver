@@ -15,9 +15,6 @@ set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "!BuildTargets")
 set(CMAKE_USER_MAKE_RULES_OVERRIDE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/c_flag_overrides.cmake)
 set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX ${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_flag_overrides.cmake)
 
-# otherwise it tries to download latest from github
-#set(ANTLR4_ZIP_REPOSITORY https://github.com/antlr/antlr4/archive/4.8.zip)
-
 project(polserver CXX C)
 
 set(POL_VERSION_STR "100")
@@ -125,7 +122,6 @@ include(cmake/Antlr.cmake)
 include(cmake/Boost.cmake)
 include(cmake/Benchmark.cmake)
 include(cmake/escript_grammar.cmake)
-#include(cmake/ExternalAntlr4Cpp.cmake)
 include(cmake/Format.cmake)
 include(cmake/Kaitai.cmake)
 if (${windows})
